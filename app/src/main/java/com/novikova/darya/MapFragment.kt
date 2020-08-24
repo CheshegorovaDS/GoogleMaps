@@ -51,8 +51,10 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonC
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.setOnMyLocationButtonClickListener(this)
-        googleMap.setOnMyLocationClickListener(this)
+        googleMap.setMyLocationEnabled(true);
+        googleMap.setOnMyLocationButtonClickListener(this);
+        googleMap.setOnMyLocationClickListener(this);
+
 
         val marker = LatLng(0.0,0.0)
         googleMap.addMarker(MarkerOptions().position(marker).title("Zero coordinate"))
@@ -138,7 +140,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonC
         Toast.makeText(context, "MyLocation button clicked", Toast.LENGTH_SHORT).show()
         // Return false so that we don't consume the event and the default behavior still occurs
         // (the camera animates to the user's current position).
-        return false;
+        return false
 
     }
 
