@@ -1,5 +1,6 @@
 package com.novikova.darya
 
+import android.Manifest
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import pub.devrel.easypermissions.EasyPermissions
 
 
 class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
@@ -41,7 +43,9 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonC
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.isMyLocationEnabled = (activity as MainActivity).mLocationPermissionsGranted
+//        googleMap.isMyLocationEnabled = (activity as MainActivity).mLocationPermissionsGranted
+        googleMap.isMyLocationEnabled = EasyPermissions
+            .hasPermissions(activity!!.applicationContext, Manifest.permission.ACCESS_FINE_LOCATION)
         googleMap.setOnMyLocationButtonClickListener(this)
         googleMap.setOnMyLocationClickListener(this)
 
